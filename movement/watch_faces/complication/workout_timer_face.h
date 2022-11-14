@@ -27,9 +27,23 @@
 
 #include "movement.h"
 
+typedef enum {
+    workout_active,
+    workout_break,
+    workout_waiting,
+    workout_setting
+} workout_timer_mode_t;
+
 typedef struct {
     // Anything you need to keep track of, put it here!
-    uint8_t unused;
+    uint8_t workout_rep;
+    uint8_t action_sec;
+    uint8_t break_sec;
+    
+    uint32_t target_ts;
+    uint32_t now_ts;
+    uint8_t selection;
+    workout_timer_mode_t mode;
 } workout_timer_state_t;
 
 void workout_timer_face_setup(movement_settings_t *settings, uint8_t watch_face_index, void ** context_ptr);
